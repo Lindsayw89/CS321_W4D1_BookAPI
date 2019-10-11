@@ -22,7 +22,8 @@ namespace CS321_W4D1_BookAPI.Controllers
         {
             // TODO: convert domain models to apimodels
             var bookModels = _bookService
-                .GetAll();
+                .GetAll()
+            .ToApiModels(); // convert Books to BookModels UNSURE
 
             return Ok(bookModels);
         }
@@ -33,10 +34,41 @@ namespace CS321_W4D1_BookAPI.Controllers
         public IActionResult Get(int id)
         {
             // TODO: convert domain model to apimodel
-            var book = _bookService.Get(id);
+            var book = _bookService.Get(id).ToApiModel();
+            //UNSURE // new error
+
             if (book == null) return NotFound();
-            return Ok(book.ToApiModel());
+            return Ok(book);
         }
+
+
+
+        // GET api/author/{authorId}/books  ADDED IN
+        [HttpGet("/api/authors/{authorId}/books")]
+        public IActionResult GetBooksForAuthor(int authorId)
+        {
+            var bookModels = _bookService
+                .GetBooksForAuthor(authorId)
+                .ToApiModels();
+
+            return Ok(bookModels);
+            
+        }
+
+        // GET api/author/{authorId}/books  ADDED IN
+        [HttpGet("/api/publishers/{publisherId}/books")]
+        public IActionResult GetBooksForPublisher(int publisherid)
+        {
+            var bookModels = _bookService
+                .GetBooksForPublisher(publisherid)
+                .ToApiModels();
+
+            return Ok(bookModels);
+
+        }
+
+
+
 
         // create a new book
         // POST api/books
@@ -47,7 +79,9 @@ namespace CS321_W4D1_BookAPI.Controllers
             {
                 // TODO: convert apimodel to domain model
                 // add the new book
-                _bookService.Add(newBook);
+                _bookService.Add(newBook.ToDomainModel());
+                //UNSURE
+
             }
             catch (System.Exception ex)
             {
@@ -62,8 +96,9 @@ namespace CS321_W4D1_BookAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] BookModel updatedBook)
         {
-            var book = _bookService.Update(updatedBook);
+            var book = _bookService.Update(updatedBook.ToDomainModel());
             if (book == null) return NotFound();
+            //UNSURE
             return Ok(book.ToApiModel());
         }
 

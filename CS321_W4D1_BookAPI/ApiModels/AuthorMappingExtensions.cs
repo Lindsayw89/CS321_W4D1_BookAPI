@@ -10,17 +10,31 @@ namespace CS321_W4D1_BookAPI.ApiModels
 
         public static AuthorModel ToApiModel(this Author author)
         {
+            // return a new AuthorModel and copy the
+            // property values from the Author domain model
             return new AuthorModel
             {
                 // TODO: map Author properties to corresponding AuthorModel properties
+
+                Id = author.Id,
+                BirthDate = author.BirthDate,
+                FirstName = author.FirstName,
+                LastName = author.LastName,
             };
         }
 
         public static Author ToDomainModel(this AuthorModel authorModel)
         {
+            // return a new Author domain model and copy the
+            // property values over from the AuthorModel
             return new Author
             {
                 // TODO: map AuthorModel properties to corresponding Author props
+                Id = authorModel.Id,
+                BirthDate = authorModel.BirthDate,
+                FirstName = authorModel.FirstName,
+                LastName = authorModel.LastName,
+
             };
         }
 
