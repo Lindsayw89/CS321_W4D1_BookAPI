@@ -63,7 +63,7 @@ namespace CS321_W4D1_BookAPI.ApiModels
             return authors.Select(a => a.ToApiModel());
         }
 
-        public static IEnumerable<Book> ToDomainModel(this IEnumerable<BookModel> authorModels)
+        public static IEnumerable<Book> ToDomainModels(this IEnumerable<BookModel> authorModels)
         {
             return authorModels.Select(a => a.ToDomainModel());
         }

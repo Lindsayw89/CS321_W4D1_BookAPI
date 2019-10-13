@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS321_W4D1_BookAPI.Migrations
 {
     [DbContext(typeof(BookContext))]
-    [Migration("20190618173520_Initial")]
-    partial class Initial
+    [Migration("20191013160119_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity("CS321_W4D1_BookAPI.Models.Author", b =>
                 {
@@ -123,7 +123,7 @@ namespace CS321_W4D1_BookAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publisher");
+                    b.ToTable("Publishers");
 
                     b.HasData(
                         new
